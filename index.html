@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construye NQN — Servicios de Construcción en Neuquén</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f5f0;
+            --card: #eaeae4;
+            --coal: #212121;
+            --text: #525252;
+            --muted: #9e9e9e;
+            --accent: #2e7d32;
+            --accent-light: #43a047;
+            --accent-soft: #e8f5e9;
+            --white: #fafafa;
+            --border: #d5d5cf;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1.2rem 2.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(245,245,240,0.9); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 1.6rem; color: var(--coal); text-decoration: none; }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--text); text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-cta { background: var(--accent) !important; color: white !important; padding: 0.6rem 1.4rem; border-radius: 50px; }
+        .nav-cta:hover { background: var(--accent-light) !important; }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .hamburger span { width: 28px; height: 2px; background: var(--coal); }
+
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            padding: 8rem 2.5rem 4rem; position: relative;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1.2rem; background: var(--accent-soft);
+            border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+            margin-bottom: 2rem; width: fit-content;
+            animation: fadeUp 1s ease forwards; opacity: 0;
+        }
+        .hero-badge::before { content: ''; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
+        .hero h1 {
+            font-family: 'Instrument Serif', serif; font-size: clamp(3.2rem, 8vw, 6.5rem);
+            font-weight: 400; line-height: 1.05; letter-spacing: -0.02em;
+            color: var(--coal); margin-bottom: 1.5rem;
+            animation: fadeUp 1s ease 0.2s forwards; opacity: 0;
+        }
+        .hero h1 .highlight { color: var(--accent); font-style: italic; }
+        .hero-desc {
+            font-size: 1.1rem; line-height: 1.8; color: var(--muted);
+            max-width: 500px; margin-bottom: 2.5rem; font-weight: 400;
+            animation: fadeUp 1s ease 0.4s forwards; opacity: 0;
+        }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 1s ease 0.6s forwards; opacity: 0; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 1rem 2.2rem; background: var(--accent); color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; font-weight: 700;
+            text-decoration: none; border-radius: 50px; border: none; cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(46,125,50,0.2); }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 1rem 2.2rem; background: transparent; color: var(--coal);
+            font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; font-weight: 600;
+            text-decoration: none; border-radius: 50px; border: 2px solid var(--border); transition: all 0.3s;
+        }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+        
+        .hero-slogan-container {
+            margin: 3rem 0 3rem 0;
+            padding: 3.5rem 0;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(46,125,50,0.03) 0%, rgba(67,160,71,0.03) 100%);
+            border-radius: 20px;
+            animation: fadeUp 1s ease 0.35s forwards;
+            opacity: 0;
+        }
+        
+        .slogan-line-top {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent) 50%, transparent);
+            margin: 0 auto 2rem auto;
+        }
+        
+        .hero-slogan {
+            font-size: clamp(2.2rem, 6vw, 3.2rem);
+            font-weight: 700;
+            color: var(--coal);
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            font-family: 'Instrument Serif', serif;
+            margin: 0;
+            padding: 0 2rem;
+        }
+        
+        .hero-slogan .accent-word {
+            color: var(--accent);
+            font-style: italic;
+        }
+        
+        .slogan-line-bottom {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent) 50%, transparent);
+            margin: 2rem auto 0 auto;
+        }
+        
+        .slogan-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        
+        .slogan-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+        
+        .slogan-dot:nth-child(2) {
+            opacity: 1;
+            transform: scale(1.3);
+        }
+
+        .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding: 4rem 2.5rem; background: var(--card); border-radius: 20px; margin: 0; transform: translateY(-2rem); }
+
+        .stat { text-align: center; }
+        .stat-number { font-family: 'Instrument Serif', serif; font-size: 3rem; font-weight: 400; color: var(--accent); }
+        .stat-label { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; font-weight: 600; }
+
+        section { padding: 6rem 2.5rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+        .section-title { font-family: 'Instrument Serif', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 400; color: var(--coal); margin-bottom: 1.5rem; }
+        .section-desc { font-size: 1.05rem; line-height: 1.8; color: var(--muted); max-width: 600px; margin-bottom: 3rem; }
+
+        #servicios { background: var(--white); border-radius: 24px; margin: 2rem 1rem; padding: 4rem 2.5rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .service-card {
+            background: var(--bg); border: none; border-radius: 16px;
+            padding: 2.5rem; transition: all 0.4s;
+        }
+        .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.06); }
+        .service-icon { width: 56px; height: 56px; background: var(--accent-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem; }
+        .service-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 1rem; color: var(--coal); }
+        .service-card p { font-size: 0.95rem; line-height: 1.7; color: var(--muted); }
+        .service-features { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+        .service-features li { list-style: none; font-size: 0.85rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+        .service-features li::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+
+        #proceso { background: var(--bg); }
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
+        .process-step { padding: 2rem; background: var(--card); border-radius: 16px; }
+        .step-number { font-family: 'Instrument Serif', serif; font-size: 3rem; font-weight: 400; color: var(--accent); line-height: 1; margin-bottom: 1rem; opacity: 0.4; }
+        .process-step h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.7rem; color: var(--coal); }
+        .process-step p { font-size: 0.9rem; line-height: 1.7; color: var(--muted); }
+
+        #presupuesto { background: var(--coal); border-radius: 24px; margin: 2rem 1rem; padding: 4rem 2.5rem; color: white; }
+        #presupuesto .section-label { color: var(--accent-light); }
+        #presupuesto .section-title { color: white; }
+        .form-container { max-width: 650px; margin: 0 auto; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+        .form-group.full { grid-column: 1 / -1; }
+        .form-group label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #9e9e9e; }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.9rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px; color: white; font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem; transition: border-color 0.3s; outline: none;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent-light); }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .form-group select { cursor: pointer; }
+        .form-group select option { background: var(--coal); }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+        .form-submit { margin-top: 1.5rem; }
+        .form-submit .btn-primary { width: 100%; justify-content: center; padding: 1.1rem; font-size: 1rem; background: var(--accent-light); }
+        .form-note { text-align: center; margin-top: 1rem; font-size: 0.8rem; color: #9e9e9e; }
+
+        footer { padding: 3rem 2.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer-brand { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 1.3rem; color: var(--coal); }
+        .footer-brand span { color: var(--accent); }
+        .footer-info { font-size: 0.85rem; color: var(--muted); }
+        .footer-info a { color: var(--accent); text-decoration: none; }
+
+        .wa-float {
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 90;
+            width: 60px; height: 60px; background: #25D366; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: all 0.3s;
+            text-decoration: none; animation: fadeUp 1s ease 1s forwards; opacity: 0;
+        }
+        .wa-float:hover { transform: scale(1.1); }
+        .wa-float svg { width: 30px; height: 30px; fill: white; }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(245,245,240,0.97); flex-direction: column; justify-content: center; align-items: center; gap: 2rem; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: flex; }
+            .hero { padding: 7rem 1.5rem 3rem; }
+            section { padding: 4rem 1.5rem; }
+            .stats-bar { padding: 2rem 1.5rem; margin: 0; border-radius: 12px; }
+            .stat-number { font-size: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            #servicios { margin: 1rem 0.5rem; padding: 3rem 1.5rem; border-radius: 16px; }
+            #presupuesto { margin: 1rem 0.5rem; padding: 3rem 1.5rem; border-radius: 16px; }
+            .form-grid { grid-template-columns: 1fr; }
+            footer { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="nav-logo">Construye <span>NQN</span></a>
+        <div class="nav-links" id="navLinks">
+            <a href="#servicios">Servicios</a>
+            <a href="#proceso">Proceso</a>
+            <a href="#presupuesto" class="nav-cta">Presupuesto</a>
+        </div>
+        <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')"><span></span><span></span><span></span></div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">Neuquén y alrededores</div>
+        <h1>Construimos<br>tu <span class="highlight">proyecto</span><br>llave en mano</h1>
+        
+        <div class="hero-slogan-container">
+            <div class="slogan-line-top"></div>
+            <p class="hero-slogan">
+                Construir es <span class="accent-word">transformar</span>.
+                <br>Lo que hoy es un desafío,
+                <br>mañana es tu <span class="accent-word">hogar</span>.
+            </p>
+            
+            <div class="slogan-line-bottom"></div>
+        </div>
+        <div class="hero-actions">
+            <a href="#presupuesto" class="btn-primary">📋 Pedí tu presupuesto</a>
+            <a href="https://wa.me/542994297942" target="_blank" class="btn-secondary">💬 WhatsApp directo</a>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stat reveal"><div class="stat-number">100%</div><div class="stat-label">Compromiso</div></div>
+        <div class="stat reveal"><div class="stat-number">NQN</div><div class="stat-label">Neuquén y alrededores</div></div>
+        <div class="stat reveal"><div class="stat-number">48hs</div><div class="stat-label">Respuesta rápida</div></div>
+    </div>
+
+    <section id="servicios">
+        <div class="section-label reveal">Lo que hacemos</div>
+        <h2 class="section-title reveal">Servicios <span style="color:var(--accent)"><i>integrales</i></span> de construcción</h2>
+        <p class="section-desc reveal">Obra civil, pintura, revestimientos y metalúrgica. Soluciones integrales de construcción con compromiso, transparencia y calidad en cada detalle. Desde el proyecto hasta la entrega final, cubrimos todas las etapas de tu obra con profesionalismo y dedicación.</p>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">🏗️</div>
+                <h3>Obra Civil Llave en Mano</h3>
+                <p>Nos encargamos de todo el proceso constructivo de tu proyecto desde cero hasta la entrega final.</p>
+                <ul class="service-features"><li>Construcción desde cero</li><li>Ampliaciones</li><li>Coordinación integral de obra</li><li>Entrega llave en mano</li></ul>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🎨</div>
+                <h3>Pintura y Revear</h3>
+                <p>Terminaciones de primera calidad en pintura interior, exterior y revestimiento plástico texturado.</p>
+                <ul class="service-features"><li>Pintura interior y exterior</li><li>Revear texturado</li><li>Impermeabilizaciones</li><li>Preparación de superficies</li></ul>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">⚙️</div>
+                <h3>Metalúrgica</h3>
+                <p>Trabajos en metal a medida para tu obra o proyecto con terminación profesional.</p>
+                <ul class="service-features"><li>Herrería a medida</li><li>Estructuras metálicas</li><li>Portones y rejas</li><li>Barandas y escaleras</li></ul>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🔧</div>
+                <h3>Instalaciones</h3>
+                <p>Servicios completos de instalaciones eléctricas y sanitarias en todas tus obras.</p>
+                <ul class="service-features"><li>Instalaciones eléctricas</li><li>Instalaciones sanitarias</li><li>Gas y calefacción</li><li>Reglamentaciones vigentes</li></ul>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🪨</div>
+                <h3>Albañilería</h3>
+                <p>Trabajos de albañilería de alta calidad para nuevas construcciones y remodelaciones.</p>
+                <ul class="service-features"><li>Fundaciones</li><li>Plateas</li><li>Mampostería</li><li>Levantamiento de muros</li></ul>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">✏️</div>
+                <h3>Diseño y Proyecto</h3>
+                <p>Asesoramiento en diseño y desarrollo de proyectos constructivos personalizados.</p>
+                <ul class="service-features"><li>Diseño arquitectónico</li><li>Desarrollo de proyectos</li><li>Optimización de costos</li></ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="proceso">
+        <div class="section-label reveal">Cómo trabajamos</div>
+        <h2 class="section-title reveal">Un proceso <span style="color:var(--accent)"><i>simple</i></span> y transparente</h2>
+        <div class="process-steps">
+            <div class="process-step reveal"><div class="step-number">01</div><h3>Contacto</h3><p>Nos escribís por WhatsApp o completás el formulario. Te respondemos en menos de 48 horas.</p></div>
+            <div class="process-step reveal"><div class="step-number">02</div><h3>Relevamiento</h3><p>Visitamos el lugar y evaluamos el trabajo para darte un presupuesto justo.</p></div>
+            <div class="process-step reveal"><div class="step-number">03</div><h3>Presupuesto</h3><p>Te presentamos una propuesta clara, sin costos ocultos, con materiales estimados y tiempos detallados.</p></div>
+            <div class="process-step reveal"><div class="step-number">04</div><h3>Ejecución</h3><p>Arrancamos la obra con compromiso, prolijidad y comunicación constante.</p></div>
+        </div>
+    </section>
+
+    <section id="presupuesto">
+        <div class="form-container">
+            <div style="text-align:center; margin-bottom: 3rem;">
+                <div class="section-label reveal">Empezá ahora</div>
+                <h2 class="section-title reveal">Pedí tu <span style="color:var(--accent-light)"><i>presupuesto</i></span> sin compromiso</h2>
+            </div>
+            <form class="reveal" onsubmit="sendWA(event)">
+                <div class="form-grid">
+                    <div class="form-group"><label>Nombre</label><input type="text" id="fname" placeholder="Tu nombre" required></div>
+                    <div class="form-group"><label>Teléfono</label><input type="tel" id="fphone" placeholder="Ej: 299 4567890"></div>
+                    <div class="form-group full"><label>Tipo de servicio</label><select id="fservice" required><option value="" disabled selected>Seleccioná un servicio</option><option>Obra civil llave en mano</option><option>Pintura y revear</option><option>Metalúrgica</option><option>Instalaciones</option><option>Albañilería</option><option>Diseño y proyecto</option><option>Otro</option></select></div>
+                    <div class="form-group full"><label>Zona</label><input type="text" id="fzone" placeholder="Ej: Neuquén capital, Plottier, Cipolletti..."></div>
+                    <div class="form-group full"><label>Contanos sobre tu proyecto</label><textarea id="fdetails" placeholder="Describí brevemente qué necesitás..."></textarea></div>
+                </div>
+                <div class="form-submit"><button type="submit" class="btn-primary">✉️ Enviar solicitud por WhatsApp</button></div>
+                <p class="form-note">Tu solicitud se envía directamente a nuestro WhatsApp. Te respondemos en menos de 48hs.</p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-brand">Construye <span>NQN</span></div>
+        <div class="footer-info">Neuquén y alrededores · <a href="https://wa.me/542994297942" target="_blank">WhatsApp: 299 429 7942</a></div>
+    </footer>
+
+    <a href="https://wa.me/542994297942" target="_blank" class="wa-float"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+    <script>
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active')));
+        const obs = new IntersectionObserver(entries => entries.forEach((e,i) => { if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*100);obs.unobserve(e.target);}}),{threshold:0.1});
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+        function sendWA(e){e.preventDefault();const n=document.getElementById('fname').value,p=document.getElementById('fphone').value,s=document.getElementById('fservice').value,z=document.getElementById('fzone').value,d=document.getElementById('fdetails').value;let m=`¡Hola! Soy *${n}*%0A%0AQuiero consultar por: *${s}*%0A`;if(p)m+=`Mi teléfono: ${p}%0A`;if(z)m+=`Zona: ${z}%0A`;if(d)m+=`%0ADetalles:%0A${d}`;window.open(`https://wa.me/542994297942?text=${m}`,'_blank');}
+    </script>
+</body>
+</html>
