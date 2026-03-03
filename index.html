@@ -171,7 +171,10 @@
         #neuquen { background: var(--bg); }
         .growth-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
         .growth-card { background: var(--card); border-radius: 16px; padding: 2rem; text-align: center; }
-        .growth-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .growth-icon { font-size: 2rem; margin-bottom: 1rem; display: flex; justify-content: center; }
+        .service-icon svg { width: 26px; height: 26px; }
+        .growth-icon svg { width: 36px; height: 36px; }
+        .btn-primary svg, .btn-secondary svg { width: 18px; height: 18px; flex-shrink: 0; }
         .growth-number { font-family: 'Instrument Serif', serif; font-size: 2.2rem; color: var(--accent); font-weight: 400; }
         .growth-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; line-height: 1.5; font-weight: 500; }
 
@@ -275,8 +278,8 @@
             <div class="slogan-line-bottom"></div>
         </div>
         <div class="hero-actions">
-            <a href="#presupuesto" class="btn-primary">📋 Pedí tu presupuesto</a>
-            <a href="https://wa.me/542994297942" target="_blank" class="btn-secondary">💬 WhatsApp directo</a>
+            <a href="#presupuesto" class="btn-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M8 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-2"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg> Pedí tu presupuesto</a>
+            <a href="https://wa.me/542994297942" target="_blank" class="btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> WhatsApp directo</a>
         </div>
     </section>
 
@@ -292,22 +295,22 @@
         <p class="section-desc reveal">Neuquén es una de las provincias de mayor crecimiento en Argentina. El desarrollo de Vaca Muerta, la expansión urbana y el auge de nuevos barrios y emprendimientos generan una demanda constante de construcción de calidad. Ser parte de este crecimiento es nuestra misión.</p>
         <div class="growth-grid">
             <div class="growth-card reveal">
-                <div class="growth-icon">🏙️</div>
+                <div class="growth-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="9" height="13" rx="1"/><rect x="14" y="5" width="7" height="17" rx="1"/><path d="M2 22h20"/></svg></div>
                 <div class="growth-number">+40%</div>
                 <div class="growth-label">Crecimiento poblacional en la última década</div>
             </div>
             <div class="growth-card reveal">
-                <div class="growth-icon">⛽</div>
+                <div class="growth-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
                 <div class="growth-number">Vaca Muerta</div>
                 <div class="growth-label">Motor económico que impulsa la construcción y el desarrollo regional</div>
             </div>
             <div class="growth-card reveal">
-                <div class="growth-icon">🏘️</div>
+                <div class="growth-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
                 <div class="growth-number">Miles</div>
                 <div class="growth-label">De nuevas viviendas, barrios y emprendimientos en expansión</div>
             </div>
             <div class="growth-card reveal">
-                <div class="growth-icon">📈</div>
+                <div class="growth-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
                 <div class="growth-number">Top 5</div>
                 <div class="growth-label">Provincias con mayor inversión en obra pública y privada</div>
             </div>
@@ -320,37 +323,37 @@
         <p class="section-desc reveal">Obra civil, pintura, revestimientos y metalúrgica. Soluciones integrales de construcción con compromiso, transparencia y calidad en cada detalle. Desde el proyecto hasta la entrega final, cubrimos todas las etapas de tu obra con profesionalismo y dedicación.</p>
         <div class="services-grid">
             <div class="service-card reveal">
-                <div class="service-icon">🏗️</div>
+                <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
                 <h3>Obra Civil Llave en Mano</h3>
                 <p>Nos encargamos de todo el proceso constructivo de tu proyecto desde cero hasta la entrega final.</p>
                 <ul class="service-features"><li>Construcción desde cero</li><li>Ampliaciones</li><li>Coordinación integral de obra</li><li>Entrega llave en mano</li></ul>
             </div>
             <div class="service-card reveal">
-                <div class="service-icon">🎨</div>
+                <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 1 0-3-3z"/><path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/><path d="M14.5 17.5 4.5 15"/></svg></div>
                 <h3>Pintura y Revear</h3>
                 <p>Terminaciones de primera calidad en pintura interior, exterior y revestimiento plástico texturado.</p>
                 <ul class="service-features"><li>Pintura interior y exterior</li><li>Revear texturado</li><li>Impermeabilizaciones</li><li>Preparación de superficies</li></ul>
             </div>
             <div class="service-card reveal">
-                <div class="service-icon">⚙️</div>
+                <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
                 <h3>Metalúrgica</h3>
                 <p>Trabajos en metal a medida para tu obra o proyecto con terminación profesional.</p>
                 <ul class="service-features"><li>Herrería a medida</li><li>Estructuras metálicas</li><li>Portones y rejas</li><li>Barandas y escaleras</li></ul>
             </div>
             <div class="service-card reveal">
-                <div class="service-icon">🔧</div>
+                <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
                 <h3>Instalaciones</h3>
                 <p>Servicios completos de instalaciones eléctricas y sanitarias en todas tus obras.</p>
                 <ul class="service-features"><li>Instalaciones eléctricas</li><li>Instalaciones sanitarias</li><li>Gas y calefacción</li><li>Reglamentaciones vigentes</li></ul>
             </div>
             <div class="service-card reveal">
-                <div class="service-icon">🪨</div>
+                <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
                 <h3>Albañilería</h3>
                 <p>Trabajos de albañilería de alta calidad para nuevas construcciones y remodelaciones.</p>
                 <ul class="service-features"><li>Fundaciones</li><li>Plateas</li><li>Mampostería</li><li>Levantamiento de muros</li></ul>
             </div>
             <div class="service-card reveal">
-                <div class="service-icon">✏️</div>
+                <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
                 <h3>Diseño y Proyecto</h3>
                 <p>Asesoramiento en diseño y desarrollo de proyectos constructivos personalizados.</p>
                 <ul class="service-features"><li>Diseño arquitectónico</li><li>Desarrollo de proyectos</li><li>Optimización de costos</li></ul>
@@ -358,7 +361,7 @@
         </div>
         <div class="consulting-callout reveal">
             <p>¿Necesitás algo que no está en la lista? <strong>Consultanos igual.</strong> Ofrecemos asesoramiento integral — si lo necesitás, lo resolvemos o te orientamos para encontrar la mejor solución.</p>
-            <a href="https://wa.me/542994297942" target="_blank" class="btn-primary">💬 Consultar ahora</a>
+            <a href="https://wa.me/542994297942" target="_blank" class="btn-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Consultar ahora</a>
         </div>
     </section>
 
@@ -387,7 +390,7 @@
                     <div class="form-group full"><label>Zona</label><input type="text" id="fzone" placeholder="Ej: Neuquén capital, Plottier, Cipolletti..."></div>
                     <div class="form-group full"><label>Contanos sobre tu proyecto</label><textarea id="fdetails" placeholder="Describí brevemente qué necesitás..."></textarea></div>
                 </div>
-                <div class="form-submit"><button type="submit" class="btn-primary">✉️ Enviar solicitud por WhatsApp</button></div>
+                <div class="form-submit"><button type="submit" class="btn-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar solicitud por WhatsApp</button></div>
                 <p class="form-note">Tu solicitud se envía directamente a nuestro WhatsApp. Te respondemos en menos de 48hs.</p>
             </form>
         </div>
