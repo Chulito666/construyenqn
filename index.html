@@ -168,6 +168,21 @@
         .service-features li { list-style: none; font-size: 0.85rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
         .service-features li::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 0.9rem; }
 
+        #neuquen { background: var(--bg); }
+        .growth-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .growth-card { background: var(--card); border-radius: 16px; padding: 2rem; text-align: center; }
+        .growth-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .growth-number { font-family: 'Instrument Serif', serif; font-size: 2.2rem; color: var(--accent); font-weight: 400; }
+        .growth-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; line-height: 1.5; font-weight: 500; }
+
+        .consulting-callout {
+            margin-top: 3rem; padding: 2.5rem; background: var(--accent-soft);
+            border-radius: 16px; border-left: 4px solid var(--accent);
+            display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+        }
+        .consulting-callout p { font-size: 1rem; line-height: 1.7; color: var(--coal); max-width: 500px; }
+        .consulting-callout p strong { color: var(--accent); }
+
         #proceso { background: var(--bg); }
         .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
         .process-step { padding: 2rem; background: var(--card); border-radius: 16px; }
@@ -271,6 +286,34 @@
         <div class="stat reveal"><div class="stat-number">48hs</div><div class="stat-label">Respuesta rápida</div></div>
     </div>
 
+    <section id="neuquen">
+        <div class="section-label reveal">Por qué Neuquén</div>
+        <h2 class="section-title reveal">Una ciudad que <span style="color:var(--accent)"><i>no para de crecer</i></span></h2>
+        <p class="section-desc reveal">Neuquén es una de las provincias de mayor crecimiento en Argentina. El desarrollo de Vaca Muerta, la expansión urbana y el auge de nuevos barrios y emprendimientos generan una demanda constante de construcción de calidad. Ser parte de este crecimiento es nuestra misión.</p>
+        <div class="growth-grid">
+            <div class="growth-card reveal">
+                <div class="growth-icon">🏙️</div>
+                <div class="growth-number">+40%</div>
+                <div class="growth-label">Crecimiento poblacional en la última década</div>
+            </div>
+            <div class="growth-card reveal">
+                <div class="growth-icon">⛽</div>
+                <div class="growth-number">Vaca Muerta</div>
+                <div class="growth-label">Motor económico que impulsa la construcción y el desarrollo regional</div>
+            </div>
+            <div class="growth-card reveal">
+                <div class="growth-icon">🏘️</div>
+                <div class="growth-number">Miles</div>
+                <div class="growth-label">De nuevas viviendas, barrios y emprendimientos en expansión</div>
+            </div>
+            <div class="growth-card reveal">
+                <div class="growth-icon">📈</div>
+                <div class="growth-number">Top 5</div>
+                <div class="growth-label">Provincias con mayor inversión en obra pública y privada</div>
+            </div>
+        </div>
+    </section>
+
     <section id="servicios">
         <div class="section-label reveal">Lo que hacemos</div>
         <h2 class="section-title reveal">Servicios <span style="color:var(--accent)"><i>integrales</i></span> de construcción</h2>
@@ -312,6 +355,10 @@
                 <p>Asesoramiento en diseño y desarrollo de proyectos constructivos personalizados.</p>
                 <ul class="service-features"><li>Diseño arquitectónico</li><li>Desarrollo de proyectos</li><li>Optimización de costos</li></ul>
             </div>
+        </div>
+        <div class="consulting-callout reveal">
+            <p>¿Necesitás algo que no está en la lista? <strong>Consultanos igual.</strong> Ofrecemos asesoramiento integral — si lo necesitás, lo resolvemos o te orientamos para encontrar la mejor solución.</p>
+            <a href="https://wa.me/542994297942" target="_blank" class="btn-primary">💬 Consultar ahora</a>
         </div>
     </section>
 
